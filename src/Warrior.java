@@ -20,6 +20,15 @@ public class Warrior extends Character implements Attacker{
         this.strength = strength;
     }
 
+
+    public int getStamina() {
+        return stamina;
+    }
+
+    public int getStrength() {
+        return strength;
+    }
+
     public void heavyAttack(Character character){
         stamina-=5;
         character.setHp(character.getHp()-strength);
@@ -28,8 +37,10 @@ public class Warrior extends Character implements Attacker{
 
     public void weakAttack(Character character){
         stamina+=1;
-
+        character.setHp(character.getHp()-(strength/2));
     }
+
+
 
     @Override
     public void attack(Character character) {
