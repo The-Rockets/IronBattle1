@@ -1,2 +1,3 @@
-public class Wizard {
+public class Wizard extends Character implements Attacker{
+
 }
