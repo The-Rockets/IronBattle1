@@ -5,6 +5,14 @@ public abstract class Character {
     private int hp;
     private boolean isAlive;
 
+    //Constructor
+    public Character(String name, int hp) {
+        this.name = name;
+        this.hp = hp;
+
+    }
+
+    //Getters & Setters
     public String getId() {
         return id;
     }
@@ -37,9 +45,5 @@ public abstract class Character {
         isAlive = alive;
     }
 
-    public Character(String name, int hp) {
-        this.name = name;
-        this.hp = hp;
 
-    }
 }
