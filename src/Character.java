@@ -5,9 +5,9 @@ public abstract class Character {
 
     private boolean isAlive;
 
-    public Character(String name, int hp) {
+
+    public Character(String name) {
         this.name = name;
-        this.hp = hp;
     }
 
     public void setName(String name) {
