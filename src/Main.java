@@ -7,6 +7,9 @@ public class Main {
 
         Character char2=new Warrior("Ant");
         System.out.println(char2.getHp());
+    public static void main(String[] args) {
+
+
     }
 
 }
