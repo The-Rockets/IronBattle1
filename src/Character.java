@@ -1,14 +1,16 @@
-public class Character {
+public abstract class Character {
 
     private String id;
     private String name;
     private int hp;
     private boolean isAlive = true;
 
-    public Character(String name, int hp) {
+
+
+    public Character(String name){
         setName(name);
         setHp(hp);
-        setId(id);
+        setId();
         setAlive(isAlive);
     }
 
@@ -16,7 +18,7 @@ public class Character {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId() {
         this.id = (Integer.toString((int)(Math.random()*10000)));
     }
 
@@ -45,5 +47,16 @@ public class Character {
     }
 
 
+    public abstract void setHp();
+
+    @Override
+    public String toString() {
+        return "Character{" +
+                ", name='" + name + '\'' +
+                "id='" + id + '\'' +
+                ", hp=" + hp +
+                ", isAlive=" + isAlive +
+                '}';
+    }
 }
 
