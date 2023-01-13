@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 public class Warrior extends Character implements Attacker{
     private int hp=(int)(Math.random()*100+100);
     private int stamina=(int)(Math.random()*40+10);
@@ -17,4 +18,7 @@ public class Warrior extends Character implements Attacker{
     public void setStrength(int strength) {
         this.strength = strength;
     }
+=======
+public class Warrior {
+>>>>>>> origin
 }
