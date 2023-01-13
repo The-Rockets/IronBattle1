@@ -1,15 +1,18 @@
 public class Main {
     public static void main(String[] args) {
 
-        Warrior warrior = new Warrior("Arthas");
-        Wizard wizard = new Wizard("Jaina");
+        Warrior warrior1 = new Warrior("Arthas");
+        Wizard wizard1 = new Wizard("Jaina");
 
-        System.out.println(warrior);
-        System.out.println("stamina: " + warrior.getStamina());
-        System.out.println("Strenght: " + warrior.getStrenght());
-        System.out.println(wizard);
-        System.out.println("Inelligence : " + wizard.getIntelligence());
-        System.out.println("Mana: : " + wizard.getMana());
+        System.out.println(warrior1);
+        System.out.println("stamina: " + warrior1.getStamina());
+        System.out.println("Strenght: " + warrior1.getStrenght());
+        System.out.println(wizard1);
+        System.out.println("Inelligence : " + wizard1.getIntelligence());
+        System.out.println("Mana: : " + wizard1.getMana());
+
+
+        wizard1.attack(warrior1);
 
 
     }
