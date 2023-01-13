@@ -1,8 +1,18 @@
+
+
 public class Main {
     public static void main(String[] args) {
 
-        Warrior warrior1 = new Warrior("Arthas");
-        Wizard wizard1 = new Wizard("Jaina");
+/*        System.out.println("Hola esto es un juego RGP:");
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Escribe el nombre de tu Guerrero :");
+        String nombre1 = scanner.nextLine();
+        System.out.println("Escribe el nombre de tu Mago :");
+        String nombre2 = scanner.nextLine();*/
+
+        Warrior warrior1 = new Warrior("Thor ");
+        Wizard wizard1 = new Wizard("jaina ");
         int hpWarrior = warrior1.getHp();
         int hpWizzard = wizard1.getHp();
         int round = 0;
