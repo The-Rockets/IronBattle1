@@ -1,12 +1,18 @@
 public class Main {
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
 
-        Character char1=new Warrior("Andres");
-        System.out.println(char1.getHp());
+        Warrior war1=new Warrior("Warrior1",100,20,10);
 
-        Character char2=new Warrior("Ant");
-        System.out.println(char2.getHp());
+        System.out.println(war1.toString());
+
+        Warrior war2=new Warrior("Warrior2");
+
+        System.out.println(war2.toString());
+
+
+
     }
+
 
 }
