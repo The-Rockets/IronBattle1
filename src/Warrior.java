@@ -26,7 +26,8 @@ public class Warrior extends Character implements Attacker{
 
     }
 
-    public void weakAttack(){
+    public void weakAttack(Character character){
+        stamina+=1;
 
     }
 

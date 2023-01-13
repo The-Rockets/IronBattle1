@@ -3,7 +3,7 @@ public abstract class Character {
     private String name;
     private int hp;
 
-    private boolean isAlive;
+    private boolean isAlive=true;
 
 
     public Character(String name) {
