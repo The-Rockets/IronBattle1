@@ -1,4 +1,4 @@
-public abstract class Character {
+public abstract class Character implements Attacker{
 
     private static int counter=0;
     private final String id;
@@ -53,6 +53,4 @@ public abstract class Character {
         return isAlive;
     }
 
-
-    public abstract void attack(Character character);
 }

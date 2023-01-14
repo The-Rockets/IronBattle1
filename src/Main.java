@@ -10,7 +10,6 @@ public class Main {
 
         battle(war1,war2);
 
-
     }
 
     public static void battle(Character character1, Character character2){
@@ -19,7 +18,13 @@ public class Main {
             character2.attack(character1);
             System.out.println("Hp1: "+character1.getHp()+", Hp2: "+character2.getHp());
         }
-
+        if(character1.isAlive()){
+            System.out.println("Character 1 wins");
+        } else if (character2.isAlive()) {
+            System.out.println("Character 2 wins");
+        }else{
+            battle(character1,character2);
+        }
     }
 
 

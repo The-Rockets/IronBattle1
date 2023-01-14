@@ -1,4 +1,4 @@
-public class Warrior extends Character implements Attacker{
+public class Warrior extends Character{
     private int stamina;
     private int strength;
 
