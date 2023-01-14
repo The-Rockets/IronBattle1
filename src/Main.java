@@ -1,43 +1,61 @@
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-
+import java.io.PrintStream;
+import java.util.Scanner;
 
 
 public class Main {
     public static void main(String[] args) throws IOException {
 
-/*        System.out.println("Hola esto es un juego RGP:");
+        System.out.println("Hola esto es un juego RGP:");
 
-        Scanner scanner = new Scanner(System.in);
+/*        Scanner scanner = new Scanner(System.in);
         System.out.println("Escribe el nombre de tu Guerrero :");
         String nombre1 = scanner.nextLine();
         System.out.println("Escribe el nombre de tu Mago :");
         String nombre2 = scanner.nextLine();*/
 
-        Warrior warrior1 = new Warrior("Thor ");
-        Wizard wizard1 = new Wizard("jaina ");
+       Warrior warrior1 = new Warrior("Thor ");
+       Wizard wizard1 = new Wizard("jaina ");
+//Warrior warrior1 = new Warrior(nombre1);
+//Wizard wizard1 = new Wizard(nombre2);
+
         int hpWarrior = warrior1.getHp();
         int hpWizzard = wizard1.getHp();
         int round = 0;
         boolean segundabatalla = false;
 
-        FileWriter battleLog = new FileWriter("battleLog.txt", true);
+/*        FileWriter battleLog = new FileWriter("battleLog.txt", true);
         battleLog.write("test");
-        battleLog.close();
+        battleLog.close();*/
 
+/*        File file = new File("battleLog.txt");
+        PrintStream printStream = new PrintStream(file);
+        System.setOut(printStream);*/
 
-        intro(warrior1, wizard1);
+        intro(warrior1, wizard1 ,segundabatalla);
         battle(warrior1, wizard1, round,segundabatalla);
         resultado(warrior1, wizard1, segundabatalla,hpWarrior,hpWizzard);
     }
 
-    private static void intro(Warrior warrior1, Wizard wizard1) {
-        System.out.println(warrior1);
-        System.out.println("stamina: " + warrior1.getStamina());
-        System.out.println("Strenght: " + warrior1.getStrenght());
-        System.out.println(wizard1);
-        System.out.println("Inelligence : " + wizard1.getIntelligence());
-        System.out.println("Mana: : " + wizard1.getMana());
+    private static void intro(Warrior warrior1, Wizard wizard1,boolean segundabatalla) {
+        if(segundabatalla) {
+            System.out.println(" ESTA ES LA INTRO DEL DESEMPATE ");
+            System.out.println("desempate enre: " + warrior1.getName()+" y "+wizard1.getName());
+        }else {
+            System.out.println("_____________INTRO_____________");
+            System.out.println(warrior1);
+            System.out.println( warrior1.getClass());
+            System.out.println("stamina: " + warrior1.getStamina());
+            System.out.println("Strenght: " + warrior1.getStrenght());
+
+            System.out.println(wizard1);
+            System.out.println(wizard1.getClass());
+            System.out.println("Inelligence : " + wizard1.getIntelligence());
+            System.out.println("Mana: : " + wizard1.getMana());
+        }
+
 
     }
 
@@ -56,7 +74,7 @@ public class Main {
             int round = 0;
             warrior1.setHp(hpWarrior);
             wizard1.setHp(hpWizzard);
-            intro(warrior1, wizard1);
+            intro(warrior1, wizard1,segundabatalla);
             battle(warrior1,wizard1,round,segundabatalla);
             resultado(warrior1, wizard1, segundabatalla,hpWarrior,hpWizzard);
         }
