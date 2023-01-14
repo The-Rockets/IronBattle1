@@ -8,14 +8,14 @@ public abstract class Character {
     private boolean isAlive=true;
 
     public Character(String name, int hp) {
-        this.id="character"+counter;
+        this.id="Character"+counter;
         this.name = name;
         setHp(hp);
         counter++;
     }
 
     public Character(String name) {
-        this.id="character"+counter;
+        this.id="Character"+counter;
         this.name = name;
         counter++;
     }
@@ -25,17 +25,16 @@ public abstract class Character {
     }
 
     public void setHp(int hp) {
-        if(hp<50){
-            this.hp=50;
-        }else if(hp>200){
-            this.hp=200;
+        if(hp<=0){
+            this.hp=0;
+            setAlive(false);
         }else{
             this.hp=hp;
         }
     }
 
     public void setAlive(boolean alive) {
-        isAlive = alive;
+        this.isAlive = alive;
     }
 
     public String getId() {
@@ -55,4 +54,5 @@ public abstract class Character {
     }
 
 
+    public abstract void attack(Character character);
 }

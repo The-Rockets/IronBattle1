@@ -10,14 +10,23 @@ public class Warrior extends Character implements Attacker{
 
     public Warrior(String name) {
         super(name);
-        setHp((int)(Math.random()*100+100));
-        setStamina((int)(Math.random()*40+10));
-        setStrength((int)(Math.random()*9+1));
+        setHp((int)(Math.random()*101+100));
+        setStamina((int)(Math.random()*41+10));
+        setStrength((int)(Math.random()*10+1));
+    }
+
+    @Override
+    public void setHp(int hp) {
+        if(hp>200){
+            super.setHp(200);
+        }else{
+            super.setHp(hp);
+        }
     }
 
     public void setStamina(int stamina) {
-        if(stamina<10){
-            this.stamina = 10;
+        if(stamina<=0){
+            this.stamina = 0;
         }else if(stamina>50){
             this.stamina = 50;
         }else{
@@ -43,9 +52,33 @@ public class Warrior extends Character implements Attacker{
         return strength;
     }
 
+    public void heavyAttack(Character character){
+        if(stamina>=5) {
+            character.setHp(character.getHp() - strength);
+            setStamina(stamina -= 5);
+        }else{
+            weakAttack(character);
+        }
+    }
+
+    public void weakAttack(Character character){
+        if(stamina>=1) {
+            character.setHp(character.getHp() - strength/2);
+            setStamina(stamina += 1);
+        }else{
+            setStamina(stamina += 2);
+        }
+    }
+
+
     @Override
     public void attack(Character character) {
-
+        double r=Math.random();
+        if(r>0.5){
+            heavyAttack(character);
+        }else{
+            weakAttack(character);
+        }
     }
 
     @Override
