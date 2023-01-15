@@ -25,7 +25,7 @@ public class Warrior extends Character{
     }
 
     public void setStamina(int stamina) {
-        if(stamina<=0){
+        if(stamina<0){
             this.stamina = 0;
         }else if(stamina>50){
             this.stamina = 50;
@@ -56,6 +56,7 @@ public class Warrior extends Character{
         if(stamina>=5) {
             character.setHp(character.getHp() - strength);
             setStamina(stamina -= 5);
+            System.out.println(getName() +" with hp "+getHp()+" and stamina "+getStamina()+" has made a heavy attack");
         }else{
             weakAttack(character);
         }
@@ -65,8 +66,10 @@ public class Warrior extends Character{
         if(stamina>=1) {
             character.setHp(character.getHp() - strength/2);
             setStamina(stamina += 1);
+            System.out.println(getName() +" with hp "+getHp()+" and stamina "+getStamina()+" has made a weak attack");
         }else{
             setStamina(stamina += 2);
+            System.out.println(getName() +" with hp "+getHp()+" and stamina "+getStamina()+" has not made any attack");
         }
     }
 
