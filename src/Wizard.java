@@ -39,7 +39,7 @@ public class Wizard extends Character implements Attacker {
 
     @Override
     public void setHp() {
-        super.setHp((int) (Math.random() * 10) + 1);   //super.setHp((int) (Math.random() * 101) + 50);
+        super.setHp((int) (Math.random() * 101) + 50);   //super.setHp((int) (Math.random() * 101) + 50);
     }
 
 
@@ -84,9 +84,11 @@ public class Wizard extends Character implements Attacker {
 
     @Override
     public String toString() {
-        return "Wizard{" +
-                "mana=" + mana +
-                ", intelligence=" + intelligence +
+        return "Wizzard{" +
+                "Name: "+super.getName()+
+                "Hp: "+super.getHp()+
+                "Intelligence=" + intelligence +
+                ", Mana=" + mana +
                 '}';
     }
 }

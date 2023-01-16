@@ -1,4 +1,4 @@
-public class Warrior extends Character{
+public class Warrior extends Character {
     private int stamina;
     private int strength;
 
@@ -10,16 +10,16 @@ public class Warrior extends Character{
 
     public Warrior(String name) {
         super(name);
-        setHp((int)(Math.random()*101+100));
-        setStamina((int)(Math.random()*41+10));
-        setStrength((int)(Math.random()*10+1));
+        setHp((int) (Math.random() * 101 + 100));
+        setStamina((int) (Math.random() * 41 + 10));
+        setStrength((int) (Math.random() * 10 + 1));
     }
 
     @Override
     public void setHp(int hp) {
-        if(hp>200){
+        if (hp > 200) {
             super.setHp(200);
-        }else{
+        } else {
             super.setHp(hp);
         }
     }
@@ -30,21 +30,21 @@ public class Warrior extends Character{
     }
 
     public void setStamina(int stamina) {
-        if(stamina<0){
+        if (stamina < 0) {
             this.stamina = 0;
-        }else if(stamina>50){
+        } else if (stamina > 50) {
             this.stamina = 50;
-        }else{
+        } else {
             this.stamina = stamina;
         }
     }
 
     public void setStrength(int strength) {
-        if(strength<1){
+        if (strength < 1) {
             this.strength = 1;
-        }else if(strength>10){
+        } else if (strength > 10) {
             this.strength = 10;
-        }else{
+        } else {
             this.strength = strength;
         }
     }
@@ -57,47 +57,56 @@ public class Warrior extends Character{
         return strength;
     }
 
-    public void heavyAttack(Character character){
-        if(stamina>=5) {
-            character.setHp(character.getHp() - strength);
-            setStamina(stamina -= 5);
-            System.out.println(getName() +" with hp "+getHp()+" and stamina "+getStamina()+" has made a heavy attack");
-        }else{
-            weakAttack(character);
+    private void heavyAttack(Character character, boolean rollforCritChance) {
+        if (rollforCritChance) {
+            character.setHp(character.getHp() - strength * 2);
+            this.stamina = stamina - 5;
+            System.out.println(this.getName() + " used a Heavy Attack and deal CRITICAL " + strength * 2 + " DAMAGE to " + character.getName());
+        } else {
+            character.setHp(character.getHp() - strength * 2);
+            this.stamina = stamina - 5;
+            System.out.println(this.getName() + " used a Heavy Attack and deal " + strength * 2 + " damage to " + character.getName());
         }
     }
 
-    public void weakAttack(Character character){
-        if(stamina>=1) {
-            character.setHp(character.getHp() - strength/2);
-            setStamina(stamina += 1);
-            System.out.println(getName() +" with hp "+getHp()+" and stamina "+getStamina()+" has made a weak attack");
-        }else{
-            setStamina(stamina += 2);
-            System.out.println(getName() +" with hp "+getHp()+" and stamina "+getStamina()+" has not made any attack");
-        }
+    private void weakAttack(Character character) {
+        int damage = this.strength / 2;
+        character.setHp(character.getHp() - strength);
+        this.stamina = stamina + 1;
+        System.out.println(this.getName() + " used a Weak Attack and dealt " + damage + " damage to " + character.getName());
+    }
+
+
+    private void outOfStamina() {
+        System.out.println("warrior does not have the stamina to do a Weak attack he will not inflict any damage and recover his stamina by 2.");
+        this.stamina = stamina + 2;
     }
 
 
     @Override
     public void attack(Character character) {
-        double r=Math.random();
-        if(r>0.5){
-            heavyAttack(character);
-        }else{
+        boolean rollforHeavyAttack = Math.random() > 0.5;
+        boolean rollforCritChance = Math.random() > 0.5;
+
+        if (rollforHeavyAttack && stamina >= 5) {
+            heavyAttack(character, rollforCritChance);
+        } else if (stamina >= 1) {
             weakAttack(character);
+        } else {
+            outOfStamina();
         }
     }
+
+
 
     @Override
     public String toString() {
         return "Warrior{" +
-                "id='" + getId() + '\'' +
-                ", name='" + getName() + '\'' +
-                ", hp=" + getHp() +
-                ", isAlive=" + isAlive() +
-                ", stamina=" + stamina +
+                "Name: "+super.getName()+
+                "Hp: "+super.getHp()+
+                "stamina=" + stamina +
                 ", strength=" + strength +
                 '}';
     }
 }
+
