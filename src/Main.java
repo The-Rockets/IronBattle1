@@ -11,8 +11,8 @@ public class Main {
         boolean segundabatalla = false;
 
 
-        System.out.println(warrior1.toString());
-        System.out.println(wizard1.toString());
+        System.out.println(warrior1);
+        System.out.println(wizard1);
 
         battle(warrior1,wizard1,round);
 
@@ -20,16 +20,19 @@ public class Main {
 
     public static void battle(Character warrior1, Character wizard1,int round){
         while (warrior1.getHp()>0 && wizard1.getHp()>0) {
-            System.out.println("--------"+round+"--------");
+            System.out.println("--------"+"ROUND: "+round+"--------");
             warrior1.attack(wizard1);
             wizard1.attack(warrior1);
             round++;
+            System.out.println("------------------------------------");
+            System.out.println(" Warrior HP: " + warrior1.getHp());
+            System.out.println(" Wizard HP: " + wizard1.getHp());
         }
         if(warrior1.isAlive()){
             System.out.println(warrior1.getName()+" has won the battle");
         } else if (wizard1.isAlive()) {
             System.out.println(wizard1.getName()+" has won the battle");
-        }else{
+        }else{//aqui deberia empezar el desempate
             round=0;
             battle(warrior1,wizard1,round);
         }

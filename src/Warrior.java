@@ -104,8 +104,8 @@ public class Warrior extends Character {
         return "Warrior{" +
                 "Name: "+super.getName()+
                 "Hp: "+super.getHp()+
-                "stamina=" + stamina +
-                ", strength=" + strength +
+                "stamina: " + stamina +
+                ", strength: " + strength +
                 '}';
     }
 }

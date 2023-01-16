@@ -87,8 +87,8 @@ public class Wizard extends Character implements Attacker {
         return "Wizzard{" +
                 "Name: "+super.getName()+
                 "Hp: "+super.getHp()+
-                "Intelligence=" + intelligence +
-                ", Mana=" + mana +
+                "Intelligence: " + intelligence +
+                ", Mana: " + mana +
                 '}';
     }
 }
