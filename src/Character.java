@@ -53,4 +53,5 @@ public abstract class Character implements Attacker{
         return isAlive;
     }
 
+    public abstract void setHp();
 }

@@ -24,6 +24,11 @@ public class Warrior extends Character{
         }
     }
 
+    @Override
+    public void setHp() {
+
+    }
+
     public void setStamina(int stamina) {
         if(stamina<0){
             this.stamina = 0;

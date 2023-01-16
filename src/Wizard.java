@@ -14,6 +14,9 @@ public class Wizard extends Character implements Attacker {
 
     }
 
+    private void setId() {
+    }
+
     public int getMana() {
         return mana;
     }
@@ -77,6 +80,14 @@ public class Wizard extends Character implements Attacker {
             System.out.println(this.getName() + " use fireball and deal " + intelligence + " damage to " + character.getName());
 
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Wizard{" +
+                "mana=" + mana +
+                ", intelligence=" + intelligence +
+                '}';
     }
 }
 
