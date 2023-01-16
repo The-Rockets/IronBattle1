@@ -1,6 +1,11 @@
+import java.io.*;
+
 public class Main {
 
-    public static void main(String[] args) {
+    public Main() throws IOException {
+    }
+
+    public static void main(String[] args) throws FileNotFoundException {
 
         Warrior warrior1 = new Warrior("Thor ");
         Wizard wizard1 = new Wizard("jaina ");
@@ -12,7 +17,10 @@ public class Main {
 
         battle(warrior1,wizard1,round);
 
+        battleLogTXT();
     }
+
+
 
     public static void battle(Character warrior1, Character wizard1,int round){
         while (warrior1.isAlive() && wizard1.isAlive()) {
@@ -34,6 +42,16 @@ public class Main {
             battle(warrior1,wizard1,round);
         }
     }
+
+
+    private static void battleLogTXT() throws FileNotFoundException {
+        File file = new File("battleLog.txt");
+        PrintStream printStream = new PrintStream(file);
+        System.setOut(printStream);
+    }
+
+
+
 
 
 }
