@@ -19,7 +19,7 @@ public class Main {
     }
 
     public static void battle(Character warrior1, Character wizard1,int round){
-        while (warrior1.getHp()>0 && wizard1.getHp()>0) {
+        while (warrior1.isAlive() && wizard1.isAlive()) {
             System.out.println("--------"+"ROUND: "+round+"--------");
             warrior1.attack(wizard1);
             wizard1.attack(warrior1);
