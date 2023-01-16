@@ -2,30 +2,28 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Warrior char1 = new Warrior("Andres");
-        System.out.println(char1.getHp());
-        System.out.println(char1.getStamina());
-        System.out.println(char1.getStrength());
-        System.out.println("===");
-        Warrior char2 = new Warrior("Ant");
-        System.out.println(char2.getHp());
-        System.out.println(char2.getStamina());
-        System.out.println(char2.getStrength());
-        System.out.println("===");
+        Character war1=new Warrior("Warrior 1");
+        Character war2=new Warrior("Warrior 2");
 
-        char1.weakAttack(char2);
+        System.out.println(war1.toString());
+        System.out.println(war2.toString());
 
-        System.out.println(char1.getHp());
-        System.out.println(char1.getStamina());
-        System.out.println(char1.getStrength());
-        System.out.println("===");
-        System.out.println(char2.getHp());
-        System.out.println(char2.getStamina());
-        System.out.println(char2.getStrength());
+        battle(war1,war2);
 
+    }
 
-
-
+    public static void battle(Character character1, Character character2){
+        while (character1.isAlive() && character2.isAlive()){
+            character1.attack(character2);
+            character2.attack(character1);
+        }
+        if(character1.isAlive()){
+            System.out.println(character1.getName()+" has won the battle");
+        } else if (character2.isAlive()) {
+            System.out.println(character2.getName()+" has won the battle");
+        }else{
+            battle(character1,character2);
+        }
     }
 
 
