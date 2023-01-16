@@ -1,4 +1,6 @@
 import java.io.*;
+import java.util.List;
+import java.util.Random;
 
 public class Main {
 
@@ -7,13 +9,23 @@ public class Main {
 
     public static void main(String[] args) throws FileNotFoundException {
 
-        Warrior warrior1 = new Warrior("Thor ");
-        Wizard wizard1 = new Wizard("jaina ");
+        //Warrior warrior1 = new Warrior("Thor ");
+        //Wizard wizard1 = new Wizard("jaina ");
 
+        List<String> warriors = CsvReader.readWarriors("./src/warriors.csv");
+        List<String> wizards = CsvReader.readWarriors("./src/wizards.csv");
+        Random rand = new Random();
+        int randomIndex1 = rand.nextInt(warriors.size());
+        int randomIndex2 = rand.nextInt(wizards.size());
+
+        Character warrior1 = new Warrior(warriors.get(randomIndex1));
+        Character wizard1 = new Warrior(wizards.get(randomIndex2));
+        System.out.println("Warrior 1 selected randomly: " + warrior1);
+        System.out.println("Warrior 2 selected randomly: " + wizard1);
         int round = 1;
 
-        System.out.println(warrior1);
-        System.out.println(wizard1);
+        //System.out.println(warrior1);
+        //System.out.println(wizard1);
 
         battle(warrior1,wizard1,round);
 
