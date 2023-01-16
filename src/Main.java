@@ -17,7 +17,8 @@ public class Main {
 
         battle(warrior1,wizard1,round);
 
-        battleLogTXT();
+       // battleLogTXT();
+        //
     }
 
 

@@ -1,14 +1,30 @@
-_____________INTRO_____________
-Character{, name='Thor 'id='825', hp=18}
-class Warrior
-stamina: 44
-Strenght: 3
-Character{, name='jaina 'id='9722', hp=5}
-class Wizard
-Inelligence : 16
-Mana: : 35
-----------------------ROUND1------------------
-jaina  use fireball and deal 16 damage to Thor 
-Thor  used a Heavy Attack and deal 6 damage to jaina 
- Warrior HP: 2
- Wizard HP: -1
+--------ROUND: 1--------
+Thor  used a Heavy Attack and deal CRITICAL 8 DAMAGE to jaina 
+jaina  use fireball and deal CRITICAL 58 DAMAGE to Thor 
+------------------------------------
+ Warrior HP: 92
+ Wizard HP: 128
+--------ROUND: 2--------
+Thor  used a Heavy Attack and deal 8 damage to jaina 
+jaina  use fireball and deal CRITICAL 58 DAMAGE to Thor 
+------------------------------------
+ Warrior HP: 34
+ Wizard HP: 120
+--------ROUND: 3--------
+Thor  used a Weak Attack and dealt 2 damage to jaina 
+jaina  use staffHit and dealt 2 damage to Thor 
+------------------------------------
+ Warrior HP: 32
+ Wizard HP: 116
+--------ROUND: 4--------
+Thor  used a Weak Attack and dealt 2 damage to jaina 
+jaina  use fireball and deal 29 damage to Thor 
+------------------------------------
+ Warrior HP: 3
+ Wizard HP: 112
+--------ROUND: 5--------
+Thor  used a Heavy Attack and deal 8 damage to jaina 
+jaina  use fireball and deal CRITICAL 58 DAMAGE to Thor 
+------------------------------------
+ Warrior HP: 0
+ Wizard HP: 104
