@@ -20,8 +20,8 @@ public class Main {
 
         Character warrior = new Warrior(warriors.get(randomIndex1).trim());
         Character wizard = new Wizard(wizards.get(randomIndex2).trim());
-        System.out.println("Warrior 1 selected randomly: " + warrior);
-        System.out.println("Warrior 2 selected randomly: " + wizard);
+        System.out.println("Character 1 selected randomly: " + warrior);
+        System.out.println("Character 2 selected randomly: " + wizard);
 
 
         //System.out.println(warrior);
