@@ -1,23 +1,18 @@
-public abstract class Character implements Attacker{
+<<<<<<< HEAD
+=======
 
-    private static int counter=0;
-    private final String id;
+>>>>>>> origin
+public abstract class Character {
+    private String id;
     private String name;
     private int hp;
+<<<<<<< HEAD
 
-    private boolean isAlive=true;
+    private boolean isAlive;
 
     public Character(String name, int hp) {
-        this.id="Character"+counter;
         this.name = name;
-        setHp(hp);
-        counter++;
-    }
-
-    public Character(String name) {
-        this.id="Character"+counter;
-        this.name = name;
-        counter++;
+        this.hp = hp;
     }
 
     public void setName(String name) {
@@ -25,33 +20,52 @@ public abstract class Character implements Attacker{
     }
 
     public void setHp(int hp) {
-        if(hp<=0){
-            this.hp=0;
-            setAlive(false);
-        }else{
-            this.hp=hp;
-        }
-    }
-
-    public void setAlive(boolean alive) {
-        this.isAlive = alive;
-    }
+        this.hp = hp;
+=======
+    private boolean isAlive;
 
     public String getId() {
         return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+>>>>>>> origin
     }
 
     public String getName() {
         return name;
     }
 
+<<<<<<< HEAD
     public int getHp() {
         return hp;
+    }
+=======
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getHp() {
+        return hp;
+    }
+
+    public void setHp(int hp) {
+        this.hp = hp;
     }
 
     public boolean isAlive() {
         return isAlive;
     }
 
-    public abstract void setHp();
+    public void setAlive(boolean alive) {
+        isAlive = alive;
+    }
+
+    public Character(String name, int hp) {
+        this.name = name;
+        this.hp = hp;
+
+    }
+>>>>>>> origin
 }
