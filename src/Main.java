@@ -19,7 +19,7 @@ public class Main {
         int randomIndex2 = rand.nextInt(wizards.size());
 
         Character warrior = new Warrior(warriors.get(randomIndex1).trim());
-        Character wizard = new Warrior(wizards.get(randomIndex2).trim());
+        Character wizard = new Wizard(wizards.get(randomIndex2).trim());
         System.out.println("Warrior 1 selected randomly: " + warrior);
         System.out.println("Warrior 2 selected randomly: " + wizard);
 
@@ -27,32 +27,30 @@ public class Main {
         //System.out.println(warrior);
         //System.out.println(wizard1);
 
-        battle(warrior,wizard,round);
+        battle(warrior,wizard);
 
        // battleLogTXT();
         //
     }
 
-
-
-    public static void battle(Character warrior1, Character wizard1,int round){
-        while (warrior1.isAlive() && wizard1.isAlive()) {
-            System.out.println("--------"+"ROUND: "+round+"--------");
-            warrior1.attack(wizard1);
-            wizard1.attack(warrior1);
+    public static void battle(Character character1, Character character2){
+        int round=1;
+        while (character1.isAlive() && character2.isAlive()){
+            System.out.println("======= Round "+round+" =======");
+            character1.attack(character2);
+            character2.attack(character1);
             round++;
-            System.out.println("------------------------------------");
-            System.out.println(" Warrior HP: " + warrior1.getHp());
-            System.out.println(" Wizard HP: " + wizard1.getHp());
         }
-        if(warrior1.isAlive()){
-            System.err.println(warrior1.getName()+" has won the battle");
-        } else if (wizard1.isAlive()) {
-            System.err.println(wizard1.getName()+" has won the battle");
+        System.out.println("===========================");
+        if(character1.isAlive()){
+            System.out.println(character1.getName()+" has won the battle");
+        } else if (character2.isAlive()) {
+            System.out.println(character2.getName()+" has won the battle");
         }else{
-            //aqui deberia empezar el desempate
-            round=0;
-            battle(warrior1,wizard1,round);
+            System.out.println(character1.getName() +" and " +character2.getName()+" have tied");
+            character1.restoreParameters();
+            character2.restoreParameters();
+            battle(character1,character2);
         }
     }
 
