@@ -43,17 +43,16 @@ public class Main {
         }
         System.out.println("===========================");
         if(character1.isAlive()){
-            System.out.println(character1.getName()+" has won the battle");
+            System.err.println(character1.getName()+" has won the battle");
         } else if (character2.isAlive()) {
-            System.out.println(character2.getName()+" has won the battle");
+            System.err.println(character2.getName()+" has won the battle");
         }else{
-            System.out.println(character1.getName() +" and " +character2.getName()+" have tied");
+            System.err.println(character1.getName() +" and " +character2.getName()+" have tied");
             character1.restoreParameters();
             character2.restoreParameters();
             battle(character1,character2);
         }
     }
-
 
     private static void battleLogTXT() throws FileNotFoundException {
         File file = new File("battleLog.txt");
