@@ -1,90 +1,90 @@
 public class Wizard extends Character{
 
-    private int originalStamina;
-    private int stamina;
-    private int strength;
+    private int originalMana;
+    private int mana;
+    private int intelligence;
 
-    public Wizard(String name, int hp, int stamina, int strength) {
+    public Wizard(String name, int hp, int stamina, int intelligence) {
         super(name, hp);
-        setStamina(stamina);
-        setStrength(strength);
-        setOriginalStamina(getStamina());
+        setMana(stamina);
+        setIntelligence(intelligence);
+        setOriginalMana(getMana());
     }
 
     public Wizard(String name) {
         super(name);
-        setHp((int)(Math.random()*101+100));
-        setStamina((int)(Math.random()*41+10));
-        setStrength((int)(Math.random()*10+1));
+        setHp((int)(Math.random()*51+50));
+        setMana((int)(Math.random()*41+10));
+        setIntelligence((int)(Math.random()*10+1));
         setOriginalHp(getHp());
-        setOriginalStamina(getStamina());
+        setOriginalMana(getMana());
     }
 
     @Override
     public void setHp(int hp) {
-        if(hp>200){
-            super.setHp(200);
+        if(hp>100){
+            super.setHp(100);
         }else{
             super.setHp(hp);
         }
     }
 
-    public void setStamina(int stamina) {
-        if(stamina<0){
-            this.stamina = 0;
-        }else if(stamina>50){
-            this.stamina = 50;
+    public void setMana(int mana) {
+        if(mana <0){
+            this.mana = 0;
+        }else if(mana >50){
+            this.mana = 50;
         }else{
-            this.stamina = stamina;
+            this.mana = mana;
         }
     }
 
-    public void setOriginalStamina(int originalStamina) {
-        this.originalStamina = originalStamina;
+    public void setOriginalMana(int originalMana) {
+        this.originalMana = originalMana;
     }
 
-    public void setStrength(int strength) {
-        if(strength<1){
-            this.strength = 1;
-        }else if(strength>10){
-            this.strength = 10;
+    public void setIntelligence(int intelligence) {
+        if(intelligence <1){
+            this.intelligence = 1;
+        }else if(intelligence >50){
+            this.intelligence = 50;
         }else{
-            this.strength = strength;
+            this.intelligence = intelligence;
         }
     }
 
 
-    public int getStamina() {
-        return stamina;
+    public int getMana() {
+        return mana;
     }
 
-    public int getOriginalStamina() {
-        return originalStamina;
+    public int getOriginalMana() {
+        return originalMana;
     }
 
-    public int getStrength() {
-        return strength;
+    public int getIntelligence() {
+        return intelligence;
     }
 
 
-    public void heavyAttack(Character character){
-        if(stamina>=5) {
-            character.setHp(character.getHp() - strength);
-            setStamina(stamina -= 5);
-            System.out.println(getName() +" with hp "+getHp()+" and stamina "+getStamina()+" has made a heavy attack");
+    public void fireball(Character character){
+        if(mana >=5) {
+            character.setHp(character.getHp() - intelligence);
+            setMana(mana -= 5);
+            System.out.println(getName() +" with hp "+getHp()+" and mana "+ getMana()+" has made a fireball");
         }else{
-            weakAttack(character);
+            staffHit(character);
         }
     }
 
-    public void weakAttack(Character character){
-        if(stamina>=1) {
-            character.setHp(character.getHp() - strength/2);
-            setStamina(stamina += 1);
-            System.out.println(getName() +" with hp "+getHp()+" and stamina "+getStamina()+" has made a weak attack");
+    public void staffHit(Character character){
+        if(mana >=1) {
+            character.setHp(character.getHp() - 2);
+            setMana(mana += 1);
+            System.out.println(getName() +" with hp "+getHp()+" and mana "+ getMana()+" has made a staff hit");
         }else{
-            setStamina(stamina += 2);
-            System.out.println(getName() +" with hp "+getHp()+" and stamina "+getStamina()+" has not made any attack");
+            setMana(mana += 2);
+            System.out.println(getName() +" with hp "+getHp()+" and mana "+ getMana()+" has not made any attack");
         }
     }
 
@@ -93,27 +93,27 @@ public class Wizard extends Character{
     public void attack(Character character) {
         double r=Math.random();
         if(r>0.5){
-            heavyAttack(character);
+            fireball(character);
         }else{
-            weakAttack(character);
+            staffHit(character);
         }
     }
 
     @Override
     public void restoreParameters() {
         super.restoreParameters();
-        setStamina(getOriginalStamina());
+        setMana(getOriginalMana());
     }
 
     @Override
     public String toString() {
-        return "Warrior{" +
+        return "Wizard{" +
                 "id='" + getId() + '\'' +
                 ", name='" + getName() + '\'' +
                 ", hp=" + getHp() +
                 ", isAlive=" + isAlive() +
-                ", stamina=" + stamina +
-                ", strength=" + strength +
+                ", mana=" + mana +
+                ", intelligence=" + intelligence +
                 '}';
     }
 }

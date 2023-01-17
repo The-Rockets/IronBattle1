@@ -2,21 +2,21 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Character war1=new Warrior("Warrior 1");
-        Character war2=new Wizard("Wizard 2");
+        Character char1=new Warrior("Warrior");
+        Character char2=new Wizard("Wizard");
 
-        System.out.println(war1.toString());
-        System.out.println(war2.toString());
+        System.out.println(char1.toString());
+        System.out.println(char2.toString());
 
-        battle(war1,war2);
+        battle(char1,char2);
 
-        System.out.println(war1.toString());
-        System.out.println(war2.toString());
+        System.out.println(char1.toString());
+        System.out.println(char2.toString());
 
-        war1.restoreParameters();
-        war2.restoreParameters();
-        System.out.println(war1.toString());
-        System.out.println(war2.toString());
+        char1.restoreParameters();
+        char2.restoreParameters();
+        System.out.println(char1.toString());
+        System.out.println(char2.toString());
 
     }
 
