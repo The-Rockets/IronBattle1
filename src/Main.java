@@ -3,7 +3,7 @@ public class Main {
     public static void main(String[] args) {
 
         Character war1=new Warrior("Warrior 1");
-        Character war2=new Warrior("Warrior 2");
+        Character war2=new Wizard("Wizard 2");
 
         System.out.println(war1.toString());
         System.out.println(war2.toString());
