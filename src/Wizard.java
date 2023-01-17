@@ -1,95 +1,119 @@
-public class Wizard extends Character implements Attacker {
+public class Wizard extends Character{
 
-
+    private int originalMana;
     private int mana;
     private int intelligence;
 
+    public Wizard(String name, int hp, int stamina, int intelligence) {
+        super(name, hp);
+        setMana(stamina);
+        setIntelligence(intelligence);
+        setOriginalMana(getMana());
+    }
 
     public Wizard(String name) {
         super(name);
-        setHp();
-        setId();
-        setIntelligence();
-        setMana();
-
+        setHp((int)(Math.random()*51+50));
+        setMana((int)(Math.random()*41+10));
+        setIntelligence((int)(Math.random()*50+1));
+        setOriginalHp(getHp());
+        setOriginalMana(getMana());
     }
 
-    private void setId() {
+    @Override
+    public void setHp(int hp) {
+        if(hp>100){
+            super.setHp(100);
+        }else{
+            super.setHp(hp);
+        }
     }
+
+    public void setMana(int mana) {
+        if(mana <0){
+            this.mana = 0;
+        }else if(mana >50){
+            this.mana = 50;
+        }else{
+            this.mana = mana;
+        }
+    }
+
+    public void setOriginalMana(int originalMana) {
+        this.originalMana = originalMana;
+    }
+
+    public void setIntelligence(int intelligence) {
+        if(intelligence <1){
+            this.intelligence = 1;
+        }else if(intelligence >50){
+            this.intelligence = 50;
+        }else{
+            this.intelligence = intelligence;
+        }
+    }
+
 
     public int getMana() {
         return mana;
     }
 
-    public void setMana() {
-        this.mana = (int) (Math.random() * 41) + 10;
-    }
-
-    public void setMana(int mana) {
-        this.mana = mana;
+    public int getOriginalMana() {
+        return originalMana;
     }
 
     public int getIntelligence() {
         return intelligence;
     }
 
-    public void setIntelligence() {
-        this.intelligence = (int) (Math.random() * 41) + 10;
+
+    public void fireball(Character character){
+        if(mana >=5) {
+            character.setHp(character.getHp() - intelligence);
+            setMana(mana -= 5);
+            System.out.println(getName() +" with hp "+getHp()+" and mana "+ getMana()+" has made a fireball");
+        }else{
+            staffHit(character);
+        }
     }
 
-    @Override
-    public void setHp() {
-        super.setHp((int) (Math.random() * 101) + 50);   //super.setHp((int) (Math.random() * 101) + 50);
+    public void staffHit(Character character){
+        if(mana >=1) {
+            character.setHp(character.getHp() - 2);
+            setMana(mana += 1);
+            System.out.println(getName() +" with hp "+getHp()+" and mana "+ getMana()+" has made a staff hit");
+        }else{
+            setMana(mana += 2);
+            System.out.println(getName() +" with hp "+getHp()+" and mana "+ getMana()+" has not made any attack");
+        }
     }
 
 
     @Override
     public void attack(Character character) {
-        boolean rollforFireball = Math.random() >0.5 ;
-        boolean rollforCritChance = Math.random() >0.5;
-
-            if (rollforFireball && mana >= 5) {
-                fireball(character,rollforCritChance);
-            } else if ( mana >0) {
-                staffHit(character);
-            }else{
-                outOfMana();
-            }
-
-    }
-
-    private void outOfMana() {
-        System.out.println(this.getName() + " wizard does not have the mana to cast a Staff hit he will not inflict any damage and recover his mana by 2." );
-        setMana(mana + 5);
-    }
-
-    private void staffHit(Character character) {
-        character.setHp(character.getHp() - 2);
-        setMana(mana - 1);
-        System.out.println(this.getName() + " use staffHit and dealt " + 2 + " damage to " + character.getName());
-    }
-
-    private void fireball(Character character,boolean rollforCritChance) {
-        if(rollforCritChance) {
-            character.setHp(character.getHp() - intelligence *2);
-            setMana(mana - 5);
-            System.out.println(this.getName() + " use fireball and deal CRITICAL " + (intelligence *2) + " DAMAGE to " + character.getName());
+        double r=Math.random();
+        if(r>0.5){
+            fireball(character);
         }else{
-            character.setHp(character.getHp() - intelligence );
-            setMana(mana - 5);
-            System.out.println(this.getName() + " use fireball and deal " + intelligence + " damage to " + character.getName());
-
+            staffHit(character);
         }
     }
 
     @Override
+    public void restoreParameters() {
+        super.restoreParameters();
+        setMana(getOriginalMana());
+    }
+
+    @Override
     public String toString() {
-        return "Wizzard{" +
-                "Name: "+super.getName()+
-                "Hp: "+super.getHp()+
-                "Intelligence: " + intelligence +
-                ", Mana: " + mana +
+        return "Wizard{" +
+                "id='" + getId() + '\'' +
+                ", name='" + getName() + '\'' +
+                ", hp=" + getHp() +
+                ", isAlive=" + isAlive() +
+                ", mana=" + mana +
+                ", intelligence=" + intelligence +
                 '}';
     }
 }
-
