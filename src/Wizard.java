@@ -15,7 +15,7 @@ public class Wizard extends Character{
         super(name);
         setHp((int)(Math.random()*51+50));
         setMana((int)(Math.random()*41+10));
-        setIntelligence((int)(Math.random()*10+1));
+        setIntelligence((int)(Math.random()*50+1));
         setOriginalHp(getHp());
         setOriginalMana(getMana());
     }
