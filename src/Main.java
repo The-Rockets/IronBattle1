@@ -1,13 +1,14 @@
 import java.io.*;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 public class Main {
 
     public Main() {
     }
 
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws FileNotFoundException, InterruptedException {
 
         //Warrior warrior = new Warrior("Thor ");
         //Wizard wizard1 = new Wizard("jaina ");
@@ -23,6 +24,12 @@ public class Main {
         System.out.println("Character 1 selected randomly: " + warrior);
         System.out.println("Character 2 selected randomly: " + wizard);
 
+        TimeUnit.SECONDS.sleep(2);
+
+        System.out.println("PREPARE FOR BATTLE");
+
+
+
 
         //System.out.println(warrior);
         //System.out.println(wizard1);
@@ -33,25 +40,32 @@ public class Main {
         //
     }
 
-    public static void battle(Character character1, Character character2){
+    public static void battle(Character character1, Character character2) throws InterruptedException {
         int round=1;
+        TimeUnit.SECONDS.sleep(2);
         while (character1.isAlive() && character2.isAlive()){
+            TimeUnit.SECONDS.sleep(1);
             System.out.println("======= Round "+round+" =======");
             character1.attack(character2);
             character2.attack(character1);
             round++;
         }
+        TimeUnit.SECONDS.sleep(3);
         System.out.println("===========================");
+        TimeUnit.SECONDS.sleep(3);
         if(character1.isAlive()){
             System.err.println(character1.getName()+" has won the battle");
+            System.err.println("CONGRATULATIONS!!!"+character1.getName());
         } else if (character2.isAlive()) {
             System.err.println(character2.getName()+" has won the battle");
+            System.err.println("CONGRATULATIONS!!!"+character2.getName());
         }else{
             System.err.println(character1.getName() +" and " +character2.getName()+" have tied");
             character1.restoreParameters();
             character2.restoreParameters();
             battle(character1,character2);
         }
+        TimeUnit.SECONDS.sleep(2);
     }
 
     private static void battleLogTXT() throws FileNotFoundException {
