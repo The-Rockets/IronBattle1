@@ -67,37 +67,46 @@ public class Wizard extends Character{
     }
 
 
-    public void fireball(Character character){
-        if(mana >=5) {
-            character.setHp(character.getHp() - intelligence);
-            setMana(mana -= 5);
-            System.out.println(getName() +" with hp "+getHp()+" and mana "+ getMana()+" has made a fireball");
-        }else{
-            staffHit(character);
-        }
-    }
-
-    public void staffHit(Character character){
-        if(mana >=1) {
-            character.setHp(character.getHp() - 2);
-            setMana(mana += 1);
-            System.out.println(getName() +" with hp "+getHp()+" and mana "+ getMana()+" has made a staff hit");
-        }else{
-            setMana(mana += 2);
-            System.out.println(getName() +" with hp "+getHp()+" and mana "+ getMana()+" has not made any attack");
-        }
-    }
-
-
     @Override
     public void attack(Character character) {
-        double r=Math.random();
-        if(r>0.5){
-            fireball(character);
-        }else{
+        boolean rollforFireball = Math.random() >0.5 ;
+        boolean rollforCritChance = Math.random() >0.5;
+
+        if (rollforFireball && mana >= 5) {
+            fireball(character,rollforCritChance);
+        } else if ( mana >0) {
             staffHit(character);
+        }else{
+            outOfMana();
+        }
+
+    }
+
+    private void outOfMana() {
+        System.out.println(this.getName() + " wizard does not have the mana to cast a Staff hit he will not inflict any damage and recover his mana by 2." );
+        setMana(mana + 5);
+    }
+
+    private void staffHit(Character character) {
+        character.setHp(character.getHp() - 2);
+        setMana(mana - 1);
+        System.out.println(this.getName() + " use staffHit and dealt " + 2 + " damage to " + character.getName());
+    }
+
+    private void fireball(Character character,boolean rollforCritChance) {
+        if(rollforCritChance) {
+            character.setHp(character.getHp() - intelligence *2);
+            setMana(mana - 5);
+            System.out.println(this.getName() + " use fireball and deal CRITICAL " + (intelligence *2) + " DAMAGE to " + character.getName());
+        }else{
+            character.setHp(character.getHp() - intelligence );
+            setMana(mana - 5);
+            System.out.println(this.getName() + " use fireball and deal " + intelligence + " damage to " + character.getName());
+
         }
     }
+
+
 
     @Override
     public void restoreParameters() {
