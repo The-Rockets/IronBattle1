@@ -1,6 +1,7 @@
 import java.io.*;
 import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 public class Main {
@@ -12,6 +13,28 @@ public class Main {
 
         //Warrior warrior = new Warrior("Thor ");
         //Wizard wizard1 = new Wizard("jaina ");
+
+        System.out.println(" Welcome To Iron Battle");
+        TimeUnit.SECONDS.sleep(1);
+        System.out.println("You want to create your own Character? (Y/N)");
+        Scanner scanner = new Scanner(System.in);
+        char choice = scanner.next().charAt(0);
+        if (choice == 'Y') {
+            System.out.println("Press 1 for Warrior or 2 for Wizard");
+            Scanner scanner1 = new Scanner(System.in);
+            if (scanner1.nextInt() == 1 ){
+                System.out.println("Name for your Warrior");
+                String name = scanner.nextLine();
+                Character warrior = new Warrior(name);}
+            else if (scanner1.nextInt() == 2 ){
+                    System.out.println("Name for your Wizard");
+                    String name = scanner.nextLine();
+                    Character wizard = new Wizard(name);
+
+
+            }
+
+        }
 
         List<String> warriors = CsvReader.readWarriors("./src/warriors.csv");
         List<String> wizards = CsvReader.readWarriors("./src/wizards.csv");
