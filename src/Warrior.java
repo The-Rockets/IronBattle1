@@ -67,35 +67,42 @@ public class Warrior extends Character{
     }
 
 
-    public void heavyAttack(Character character){
-        if(stamina>=5) {
-            character.setHp(character.getHp() - strength);
-            setStamina(stamina -= 5);
-            System.out.println(getName() +" with hp "+getHp()+" and stamina "+getStamina()+" has made a heavy attack");
-        }else{
-            weakAttack(character);
-        }
-    }
-
-    public void weakAttack(Character character){
-        if(stamina>=1) {
-            character.setHp(character.getHp() - strength/2);
-            setStamina(stamina += 1);
-            System.out.println(getName() +" with hp "+getHp()+" and stamina "+getStamina()+" has made a weak attack");
-        }else{
-            setStamina(stamina += 2);
-            System.out.println(getName() +" with hp "+getHp()+" and stamina "+getStamina()+" has not made any attack");
-        }
-    }
-
-
     @Override
     public void attack(Character character) {
-        double r=Math.random();
-        if(r>0.5){
-            heavyAttack(character);
-        }else{
+        boolean rollforHeavyAttack = Math.random() >0.5 ;
+        boolean rollforCritChance = Math.random() >0.5;
+
+        if (rollforHeavyAttack && stamina >= 5) {
+            heavyAttack(character,rollforCritChance);
+        } else if (stamina >= 1) {
             weakAttack(character);
+        } else {
+            outOfStamina();
+        }
+
+    }
+
+    private void outOfStamina() {
+        System.out.println("warrior does not have the stamina to do a Weak attack he will not inflict any damage and recover his stamina by 2.");
+        this.stamina = stamina + 2;
+    }
+
+    private void weakAttack(Character character) {
+        int damage = this.strength / 2;
+        character.setHp(character.getHp() - strength);
+        this.stamina = stamina + 1;
+        System.out.println(this.getName() + " used a Weak Attack and dealt " + damage + " damage to " + character.getName());
+    }
+
+    private void heavyAttack(Character character, boolean rollforCritChance) {
+        if(rollforCritChance){
+            character.setHp(character.getHp() - strength*2);
+            this.stamina = stamina - 5;
+            System.out.println(this.getName() + " used a Heavy Attack and deal: " + strength*2 + "CRITICAL DAMAGE to " + character.getName());
+        }else {
+            character.setHp(character.getHp() - strength*2);
+            this.stamina = stamina - 5;
+            System.out.println(this.getName() + " used a Heavy Attack and deal: " + strength*2 + " damage to " + character.getName());
         }
     }
 
