@@ -42,17 +42,17 @@ public class Main {
 
     public static void battle(Character character1, Character character2) throws InterruptedException {
         int round=1;
-        TimeUnit.SECONDS.sleep(2);
         while (character1.isAlive() && character2.isAlive()){
-            TimeUnit.SECONDS.sleep(1);
-            System.out.println("======= Round "+round+" =======");
+            TimeUnit.SECONDS.sleep(2);
+            System.out.println("======== Round "+round+" ========");
             character1.attack(character2);
             character2.attack(character1);
+            System.out.println("--------------------------------");
+            System.out.println(character1.getName()+" HP: "+character1.getHp()+ " | " +character2.getName()+" HP: "+ character2.getHp());
             round++;
         }
-        TimeUnit.SECONDS.sleep(3);
-        System.out.println("===========================");
-        TimeUnit.SECONDS.sleep(3);
+        System.out.println("================================");
+        TimeUnit.SECONDS.sleep(5);
         if(character1.isAlive()){
             System.err.println(character1.getName()+" has won the battle");
             System.err.println("CONGRATULATIONS!!!"+character1.getName());
