@@ -98,7 +98,7 @@ public class Warrior extends Character{
         if(rollforCritChance){
             character.setHp(character.getHp() - strength*2);
             this.stamina = stamina - 5;
-            System.out.println(this.getName() + " used a Heavy Attack and deal: " + strength*2 + "CRITICAL DAMAGE to " + character.getName());
+            System.out.println(this.getName() + " used a Heavy Attack and deal: " + strength*2 + " CRITICAL DAMAGE to " + character.getName());
         }else {
             character.setHp(character.getHp() - strength*2);
             this.stamina = stamina - 5;

@@ -90,18 +90,18 @@ public class Wizard extends Character{
     private void staffHit(Character character) {
         character.setHp(character.getHp() - 2);
         setMana(mana - 1);
-        System.out.println(this.getName() + " use staffHit and dealt " + 2 + " damage to " + character.getName());
+        System.out.println(this.getName() + " use staffHit and deal: " + 2 + " damage to " + character.getName());
     }
 
     private void fireball(Character character,boolean rollforCritChance) {
         if(rollforCritChance) {
             character.setHp(character.getHp() - intelligence *2);
             setMana(mana - 5);
-            System.out.println(this.getName() + " use fireball and deal CRITICAL " + (intelligence *2) + " DAMAGE to " + character.getName());
+            System.out.println(this.getName() + " use fireball and deal CRITICAL: " + (intelligence *2) + " DAMAGE to " + character.getName());
         }else{
             character.setHp(character.getHp() - intelligence );
             setMana(mana - 5);
-            System.out.println(this.getName() + " use fireball and deal " + intelligence + " damage to " + character.getName());
+            System.out.println(this.getName() + " use fireball and deal: " + intelligence + " damage to " + character.getName());
 
         }
     }
