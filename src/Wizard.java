@@ -96,14 +96,12 @@ public class Wizard extends Character{
     private void fireball(Character character,boolean rollforCritChance) {
         if(rollforCritChance) {
             character.setHp(character.getHp() - intelligence *2);
-            setMana(mana - 5);
             System.out.println(this.getName() + " use fireball and deal CRITICAL: " + (intelligence *2) + " DAMAGE to " + character.getName());
         }else{
             character.setHp(character.getHp() - intelligence );
-            setMana(mana - 5);
             System.out.println(this.getName() + " use fireball and deal: " + intelligence + " damage to " + character.getName());
-
         }
+        setMana(mana - 5);
     }
 
 
