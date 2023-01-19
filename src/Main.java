@@ -19,6 +19,10 @@ public class Main {
         System.out.println("You want to create your own Character? (Y/N)");
         Scanner scanner = new Scanner(System.in);
         char choice = scanner.next().charAt(0);
+        while (choice != 'Y' && choice != 'N') {
+            System.out.println("Invalid input. Please enter Y for Yes or N for No.");
+            choice = scanner.next().charAt(0);
+        }
         if (choice == 'Y') {
             System.out.println("Press 1 for Warrior or 2 for Wizard");
             Scanner scanner1 = new Scanner(System.in);
