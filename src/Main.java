@@ -97,6 +97,22 @@ public class Main {
         System.setOut(printStream);
     }
 
+    public static Character randomCharacter(){
+        List<String> warriors = CsvReader.readWarriors("./src/warriors.csv");
+        List<String> wizards = CsvReader.readWarriors("./src/wizards.csv");
+        Random rand = new Random();
+        int randomIndex1 = rand.nextInt(warriors.size());
+        int randomIndex2 = rand.nextInt(wizards.size());
+        if(Math.random()>0.5){
+            Character warrior = new Warrior(warriors.get(randomIndex1).trim());
+            return warrior;
+        }else{
+            Character wizard = new Wizard(wizards.get(randomIndex2).trim());
+            return wizard;
+        }
+
+    }
+
 
 
 
