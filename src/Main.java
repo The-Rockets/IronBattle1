@@ -11,64 +11,54 @@ public class Main {
 
     public static void main(String[] args) throws FileNotFoundException, InterruptedException {
 
-        //Warrior warrior = new Warrior("Thor ");
-        //Wizard wizard1 = new Wizard("jaina ");
 
         System.out.println(" Welcome To Iron Battle");
         TimeUnit.SECONDS.sleep(1);
-        System.out.println("Do you want to create your own Character? (Y/N)");
-        Scanner scanner = new Scanner(System.in);
-        char choice = scanner.next().charAt(0);
 
         Character userCharacter = null;
         Character rndCharacter = null;
 
-        Boolean iligal =false;
-
-        //while (!iligal){}
-
-        while (choice != 'Y' && choice != 'N') {
+        System.out.println("Do you want to create your own Character? (Y/N)");
+        Scanner scanner = new Scanner(System.in);
+        String choice = scanner.next().toLowerCase();
+        while (!choice.equals("y") && !choice.equals("n")) {
             System.out.println("Invalid input. Please enter Y for Yes or N for No.");
-            choice = scanner.next().charAt(0);
+            choice = scanner.next().toLowerCase();
         }
-        try {
-            if (choice == 'Y') {
+        switch (choice){
+            case("y"):
                 System.out.println("Press 1 for Warrior or 2 for Wizard");
-                Scanner scanner1 = new Scanner(System.in);
-                int chose = scanner1.nextInt();
-                while (chose != 1 && chose != 2) {
+                String chose=scanner.next();
+                while (!chose.equals("1") && !chose.equals("2")) {
                     System.out.println("Invalid input. Please enter 1 for Warrior or 2 for Wizard.");
-                    chose = scanner.nextInt();
+                    chose = scanner.next();
                 }
-                if (chose == 1)
 
-                {System.out.println("Name for your Warrior");
-                    scanner.nextLine();
-                    String name = scanner.nextLine();
-                    userCharacter = new Warrior(name);
-                } else if (chose == 2) {
-                    System.out.println("Name for your Wizard");
-                    scanner.nextLine();
-                    String name = scanner.nextLine();
-                    userCharacter = new Wizard(name);
+                System.out.println("Name for your Character");
+                String name = scanner.next();
+
+                switch (chose){
+                    case ("1"):
+                        userCharacter = new Warrior(name);
+                        break;
+                    case ("2"):
+                        userCharacter = new Wizard(name);
+                        break;
                 }
                 rndCharacter = randomCharacter();
                 System.out.println(" Your " + userCharacter.getName() + " " + userCharacter.getClass() + "  with " + userCharacter.getHp() + " hp " + " will fight against " +
                         rndCharacter.getName() + " " + rndCharacter.getClass() + " with " + rndCharacter.getHp() + " hp ");
-                battle(userCharacter, rndCharacter);
-
-            }else if(choice == 'N'){
+                ;
+                break;
+            case("n"):
                 userCharacter = randomCharacter();
                 rndCharacter = randomCharacter();
-                battle(userCharacter, rndCharacter);
-            }else{
-                throw new IllegalArgumentException();
-            }
-
-        }catch(IllegalArgumentException e ){
-            System.out.println(e);
-            System.err.println("please  chose 'Y' or 'N' :");
+                break;
         }
+        battle(userCharacter, rndCharacter);
+
+
+        /*
 
         List<String> warriors = CsvReader.readWarriors("./src/warriors.csv");
         List<String> wizards = CsvReader.readWarriors("./src/wizards.csv");
@@ -84,6 +74,8 @@ public class Main {
         TimeUnit.SECONDS.sleep(2);
 
         System.out.println("PREPARE FOR BATTLE");
+
+         */
 
 
 
