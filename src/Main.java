@@ -16,25 +16,58 @@ public class Main {
 
         System.out.println(" Welcome To Iron Battle");
         TimeUnit.SECONDS.sleep(1);
-        System.out.println("You want to create your own Character? (Y/N)");
+        System.out.println("Do you want to create your own Character? (Y/N)");
         Scanner scanner = new Scanner(System.in);
-        String choice = scanner.toString().toLowerCase();
-        if (choice == "y") {
-            System.out.println("Press 1 for Warrior or 2 for Wizard");
-            Scanner scanner1 = new Scanner(System.in);
-            int selection=scanner1.nextInt();
-            if (scanner1.nextInt() == 1 ){
-                System.out.println("Name for your Warrior");
-                String name = scanner.nextLine();
-                Character warrior = new Warrior(name);}
-            else if (scanner1.nextInt() == 2 ){
-                    System.out.println("Name for your Wizard");
+        char choice = scanner.next().charAt(0);
+
+        Character userCharacter = null;
+        Character rndCharacter = null;
+
+        Boolean iligal =false;
+
+        //while (!iligal){}
+
+        while (choice != 'Y' && choice != 'N') {
+            System.out.println("Invalid input. Please enter Y for Yes or N for No.");
+            choice = scanner.next().charAt(0);
+        }
+        try {
+            if (choice == 'Y') {
+                System.out.println("Press 1 for Warrior or 2 for Wizard");
+                Scanner scanner1 = new Scanner(System.in);
+                int chose = scanner1.nextInt();
+                while (chose != 1 && chose != 2) {
+                    System.out.println("Invalid input. Please enter 1 for Warrior or 2 for Wizard.");
+                    chose = scanner.nextInt();
+                }
+                if (chose == 1)
+
+                {System.out.println("Name for your Warrior");
+                    scanner.nextLine();
                     String name = scanner.nextLine();
-                    Character wizard = new Wizard(name);
+                    userCharacter = new Warrior(name);
+                } else if (chose == 2) {
+                    System.out.println("Name for your Wizard");
+                    scanner.nextLine();
+                    String name = scanner.nextLine();
+                    userCharacter = new Wizard(name);
+                }
+                rndCharacter = randomCharacter();
+                System.out.println(" Your " + userCharacter.getName() + " " + userCharacter.getClass() + "  with " + userCharacter.getHp() + " hp " + " will fight against " +
+                        rndCharacter.getName() + " " + rndCharacter.getClass() + " with " + rndCharacter.getHp() + " hp ");
+                battle(userCharacter, rndCharacter);
 
-
+            }else if(choice == 'N'){
+                userCharacter = randomCharacter();
+                rndCharacter = randomCharacter();
+                battle(userCharacter, rndCharacter);
+            }else{
+                throw new IllegalArgumentException();
             }
 
+        }catch(IllegalArgumentException e ){
+            System.out.println(e);
+            System.err.println("please  chose 'Y' or 'N' :");
         }
 
         List<String> warriors = CsvReader.readWarriors("./src/warriors.csv");
@@ -58,9 +91,9 @@ public class Main {
         //System.out.println(warrior);
         //System.out.println(wizard1);
 
-       // battle(warrior,wizard);
+        //battle(warrior,wizard);
 
-       // battleLogTXT();
+        // battleLogTXT();
         //
     }
 
@@ -102,15 +135,20 @@ public class Main {
         List<String> warriors = CsvReader.readWarriors("./src/warriors.csv");
         List<String> wizards = CsvReader.readWarriors("./src/wizards.csv");
         Random rand = new Random();
-        Character character;
+
         if(Math.random()>0.5){
-            int randomIndex = rand.nextInt(warriors.size());
-            character = new Warrior(warriors.get(randomIndex).trim());
+            int randomIndex1 = rand.nextInt(warriors.size());
+            Character warrior = new Warrior(warriors.get(randomIndex1).trim());
+            return warrior;
         }else{
-            int randomIndex = rand.nextInt(wizards.size());
-            character = new Wizard(wizards.get(randomIndex).trim());
+            int randomIndex2 = rand.nextInt(wizards.size());
+            Character wizard = new Wizard(wizards.get(randomIndex2).trim());
+            return wizard;
         }
-        return character;
     }
+
+
+
+
 
 }
