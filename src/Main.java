@@ -125,16 +125,16 @@ public class Main {
         List<String> warriors = CsvReader.readWarriors("./src/warriors.csv");
         List<String> wizards = CsvReader.readWarriors("./src/wizards.csv");
         Random rand = new Random();
-        int randomIndex1 = rand.nextInt(warriors.size());
-        int randomIndex2 = rand.nextInt(wizards.size());
+
         if(Math.random()>0.5){
+            int randomIndex1 = rand.nextInt(warriors.size());
             Character warrior = new Warrior(warriors.get(randomIndex1).trim());
             return warrior;
         }else{
+            int randomIndex2 = rand.nextInt(wizards.size());
             Character wizard = new Wizard(wizards.get(randomIndex2).trim());
             return wizard;
         }
-
     }
 
 
