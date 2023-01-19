@@ -1,3 +1,6 @@
 public interface Attacker {
-    void attack(Character character);
+
+void attack(Character character);
+
+
 }
