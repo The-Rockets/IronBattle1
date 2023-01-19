@@ -26,13 +26,23 @@ public class Main {
         Boolean iligal =false;
 
         //while (!iligal){}
+
+        while (choice != 'Y' && choice != 'N') {
+            System.out.println("Invalid input. Please enter Y for Yes or N for No.");
+            choice = scanner.next().charAt(0);
+        }
         try {
-            if (choice == 'Y' || choice == 'y') {
+            if (choice == 'Y') {
                 System.out.println("Press 1 for Warrior or 2 for Wizard");
                 Scanner scanner1 = new Scanner(System.in);
                 int chose = scanner1.nextInt();
-                if (chose == 1) {
-                    System.out.println("Name for your Warrior");
+                while (chose != 1 && chose != 2) {
+                    System.out.println("Invalid input. Please enter 1 for Warrior or 2 for Wizard.");
+                    chose = scanner.nextInt();
+                }
+                if (chose == 1)
+
+                {System.out.println("Name for your Warrior");
                     scanner.nextLine();
                     String name = scanner.nextLine();
                     userCharacter = new Warrior(name);
@@ -47,7 +57,7 @@ public class Main {
                         rndCharacter.getName() + " " + rndCharacter.getClass() + " with " + rndCharacter.getHp() + " hp ");
                 battle(userCharacter, rndCharacter);
 
-            }else if(choice == 'N' || choice == 'n'){
+            }else if(choice == 'N'){
                 userCharacter = randomCharacter();
                 rndCharacter = randomCharacter();
                 battle(userCharacter, rndCharacter);
