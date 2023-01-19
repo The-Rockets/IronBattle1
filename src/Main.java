@@ -16,24 +16,48 @@ public class Main {
 
         System.out.println(" Welcome To Iron Battle");
         TimeUnit.SECONDS.sleep(1);
-        System.out.println("You want to create your own Character? (Y/N)");
+        System.out.println("Do you want to create your own Character? (Y/N)");
         Scanner scanner = new Scanner(System.in);
         char choice = scanner.next().charAt(0);
-        if (choice == 'Y') {
-            System.out.println("Press 1 for Warrior or 2 for Wizard");
-            Scanner scanner1 = new Scanner(System.in);
-            if (scanner1.nextInt() == 1 ){
-                System.out.println("Name for your Warrior");
-                String name = scanner.nextLine();
-                Character warrior = new Warrior(name);}
-            else if (scanner1.nextInt() == 2 ){
-                    System.out.println("Name for your Wizard");
+
+        Character userCharacter = null;
+        Character rndCharacter = null;
+
+        Boolean iligal =false;
+
+        //while (!iligal){}
+        try {
+            if (choice == 'Y' || choice == 'y') {
+                System.out.println("Press 1 for Warrior or 2 for Wizard");
+                Scanner scanner1 = new Scanner(System.in);
+                int chose = scanner1.nextInt();
+                if (chose == 1) {
+                    System.out.println("Name for your Warrior");
+                    scanner.nextLine();
                     String name = scanner.nextLine();
-                    Character wizard = new Wizard(name);
+                    userCharacter = new Warrior(name);
+                } else if (chose == 2) {
+                    System.out.println("Name for your Wizard");
+                    scanner.nextLine();
+                    String name = scanner.nextLine();
+                    userCharacter = new Wizard(name);
+                }
+                rndCharacter = randomCharacter();
+                System.out.println(" Your " + userCharacter.getName() + " " + userCharacter.getClass() + "  with " + userCharacter.getHp() + " hp " + " will fight against " +
+                        rndCharacter.getName() + " " + rndCharacter.getClass() + " with " + rndCharacter.getHp() + " hp ");
+                battle(userCharacter, rndCharacter);
 
-
+            }else if(choice == 'N' || choice == 'n'){
+                userCharacter = randomCharacter();
+                rndCharacter = randomCharacter();
+                battle(userCharacter, rndCharacter);
+            }else{
+                throw new IllegalArgumentException();
             }
 
+        }catch(IllegalArgumentException e ){
+            System.out.println(e);
+            System.err.println("please  chose 'Y' or 'N' :");
         }
 
         List<String> warriors = CsvReader.readWarriors("./src/warriors.csv");
@@ -57,7 +81,7 @@ public class Main {
         //System.out.println(warrior);
         //System.out.println(wizard1);
 
-        battle(warrior,wizard);
+        //battle(warrior,wizard);
 
        // battleLogTXT();
         //
