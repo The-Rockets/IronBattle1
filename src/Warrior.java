@@ -88,22 +88,20 @@ public class Warrior extends Character{
     }
 
     private void weakAttack(Character character) {
-        int damage = this.strength / 2;
-        character.setHp(character.getHp() - strength);
+        character.setHp(character.getHp() - strength/2);
         this.stamina = stamina + 1;
-        System.out.println(this.getName() + " used a Weak Attack and dealt " + damage + " damage to " + character.getName());
+        System.out.println(this.getName() + " used a Weak Attack and dealt " + strength/2 + " damage to " + character.getName());
     }
 
     private void heavyAttack(Character character, boolean rollforCritChance) {
         if(rollforCritChance){
             character.setHp(character.getHp() - strength*2);
-            this.stamina = stamina - 5;
             System.out.println(this.getName() + " used a Heavy Attack and deal: " + strength*2 + " CRITICAL DAMAGE to " + character.getName());
         }else {
             character.setHp(character.getHp() - strength*2);
-            this.stamina = stamina - 5;
             System.out.println(this.getName() + " used a Heavy Attack and deal: " + strength*2 + " damage to " + character.getName());
         }
+        this.stamina = stamina - 5;
     }
 
     @Override
