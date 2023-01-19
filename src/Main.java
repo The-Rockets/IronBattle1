@@ -18,10 +18,11 @@ public class Main {
         TimeUnit.SECONDS.sleep(1);
         System.out.println("You want to create your own Character? (Y/N)");
         Scanner scanner = new Scanner(System.in);
-        char choice = scanner.next().charAt(0);
-        if (choice == 'Y') {
+        String choice = scanner.toString().toLowerCase();
+        if (choice == "y") {
             System.out.println("Press 1 for Warrior or 2 for Wizard");
             Scanner scanner1 = new Scanner(System.in);
+            int selection=scanner1.nextInt();
             if (scanner1.nextInt() == 1 ){
                 System.out.println("Name for your Warrior");
                 String name = scanner.nextLine();
@@ -57,7 +58,7 @@ public class Main {
         //System.out.println(warrior);
         //System.out.println(wizard1);
 
-        battle(warrior,wizard);
+       // battle(warrior,wizard);
 
        // battleLogTXT();
         //
@@ -101,20 +102,15 @@ public class Main {
         List<String> warriors = CsvReader.readWarriors("./src/warriors.csv");
         List<String> wizards = CsvReader.readWarriors("./src/wizards.csv");
         Random rand = new Random();
-
+        Character character;
         if(Math.random()>0.5){
-            int randomIndex1 = rand.nextInt(warriors.size());
-            Character warrior = new Warrior(warriors.get(randomIndex1).trim());
-            return warrior;
+            int randomIndex = rand.nextInt(warriors.size());
+            character = new Warrior(warriors.get(randomIndex).trim());
         }else{
-            int randomIndex2 = rand.nextInt(wizards.size());
-            Character wizard = new Wizard(wizards.get(randomIndex2).trim());
-            return wizard;
+            int randomIndex = rand.nextInt(wizards.size());
+            character = new Wizard(wizards.get(randomIndex).trim());
         }
+        return character;
     }
-
-
-
-
 
 }
