@@ -17,7 +17,7 @@ public class Main {
         TimeUnit.SECONDS.sleep(1);
 
 
-        List<Character>characterList = characterChoise();
+        List<Character>characterList = characterChoiseMenu();
 // Menu de inicio
 
         Character userCharacter = characterList.get(0);
@@ -58,11 +58,12 @@ public class Main {
     }
 
     private static void startBattleMenu(Character userCharacter, Character rndCharacter, Scanner scanner) throws InterruptedException {
-        System.out.println("Do you want begin the battle or exit ?" + "\n" +
-                " 'c' to continue" + "\n" + "'E' to exit the game.");
+        System.out.println("Press 'C' --to  begin the battle"+"\n" +
+                 "Press 'E' -- to exit the game."+"\n"+
+                "Press 'B' -- back to START MENU.");
         String choice = scanner.next().toLowerCase();
 
-        while (!choice.equals("c") && !choice.equals("e")) {
+        while (!choice.equals("c") && !choice.equals("b")) {
             System.out.println("Invalid input. Please enter 'C' to continue or 'E' to exit the game..");
             choice = scanner.next().toLowerCase();
         }
@@ -70,7 +71,8 @@ public class Main {
             case ("c"):
                 battle(userCharacter, rndCharacter);
                 break;
-            case ("e"):
+            case ("b"):
+                characterChoiseMenu();
         }
     }
 
@@ -124,7 +126,7 @@ public class Main {
         }
     }
 
-    public static List<Character> characterChoise() {
+    public static List<Character> characterChoiseMenu() {
         Character userCharacter = null;
         Character rndCharacter = null;
 
@@ -141,36 +143,46 @@ public class Main {
         }
         switch (choice) {
             case ("y"):
-                System.out.println("Press 1 for Warrior or 2 for Wizard");
-                String chose = scanner.next();
-                while (!chose.equals("1") && !chose.equals("2")) {
-                    System.out.println("Invalid input. Please enter 1 for Warrior or 2 for Wizard.");
-                    chose = scanner.next();
+                System.out.println("Press: "+"\n"+"1 - for Warrior"+"\n" + "2 - for Wizard");
+                String choseCharacter = scanner.next();
+                while (!choseCharacter.equals("1") && !choseCharacter.equals("2")) {
+                    System.err.println("Invalid input. Please type:"+"\n"+"1 - for Warrior"+"\n" + "2 - for Wizard");
+                    choseCharacter = scanner.next();
                 }
 
                 System.out.println("Name for your Character");
                 String name = scanner.next();
 
-                switch (chose) {
+                switch (choseCharacter) {
                     case ("1"):
-                        int hp = statsFilter(100,200,"HP");
-                        int fuerza = statsFilter(1,10,"fuerza");
+                        int hp1 = statsFilter(100,200,"HP");
+                        int fuerza = statsFilter(1,10,"Strength");
                         int stamina = statsFilter(10,50,"Stamina");
-                        userCharacter = new Warrior(name,hp,stamina,fuerza);
+                        userCharacter = new Warrior(name,hp1,stamina,fuerza);
                         break;
                     case ("2"):
-                        userCharacter = new Wizard(name);
+                        int hp2 = statsFilter(50,100,"HP");
+                        int inteligencia = statsFilter(1,10,"intelligence");
+                        int mana = statsFilter(10,50,"Mana");
+                        userCharacter = new Wizard(name,hp2,mana,inteligencia);
                         break;
                 }
                 rndCharacter = randomCharacter();
                 if (userCharacter instanceof Warrior){
                 System.out.println("============================================" + "\n" +
-                        " Your " + userCharacter.getName() + " " + userCharacter.getClass() + "  with " + userCharacter.getHp()
-                        + " stamina: "+ ((Warrior) userCharacter).getStamina()+ "\n" +" Fuerza: "+ ((Warrior) userCharacter).getStrength()+
+                        userCharacter.getName() + " " + userCharacter.getClass() + "  with HP:" + userCharacter.getHp()
+                        + " || stamina: "+ ((Warrior) userCharacter).getStamina()+ " || Strength: "+ ((Warrior) userCharacter).getStrength()+"\n" +
                         "============= will fight against ================" + "\n" +
                         "The random " + rndCharacter.getName() + " " + rndCharacter.getClass() + " with " + rndCharacter.getHp() + " hp " + "\n" +
                         "===================================================");
-                ;}
+                }else {
+                    System.out.println("============================================" + "\n" +
+                            userCharacter.getName() + " " + userCharacter.getClass() + "  with HP:" + userCharacter.getHp()
+                            + "| mana: " + ((Wizard) userCharacter).getMana() + " | intelligence: " + ((Wizard) userCharacter).getIntelligence() + "\n" +
+                            "============= will fight against ================" + "\n" +
+                            "The random " + rndCharacter.getName() + " " + rndCharacter.getClass() + " with " + rndCharacter.getHp() + " hp " + "\n" + rndCharacter+
+                            "===================================================");
+                }
                 break;
             case ("n"):
                 userCharacter = randomCharacter();
