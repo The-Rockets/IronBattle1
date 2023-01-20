@@ -20,6 +20,10 @@ public class Warrior extends Character{
         setOriginalStamina(getStamina());
     }
 
+    public Warrior(String name, int hp) {
+        super(name, hp);
+    }
+
     @Override
     public void setHp(int hp) {
         if(hp>200){
