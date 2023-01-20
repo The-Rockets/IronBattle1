@@ -68,5 +68,5 @@ public abstract class Character implements Attacker{
         setAlive(true);
     }
 
-}
 
+}

@@ -4,9 +4,9 @@ public class Wizard extends Character{
     private int mana;
     private int intelligence;
 
-    public Wizard(String name, int hp, int stamina, int intelligence) {
+    public Wizard(String name, int hp, int mana, int intelligence) {
         super(name, hp);
-        setMana(stamina);
+        setMana(mana);
         setIntelligence(intelligence);
         setOriginalMana(getMana());
     }
