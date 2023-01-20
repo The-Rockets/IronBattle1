@@ -6,8 +6,8 @@ import java.util.concurrent.TimeUnit;
 
 public class Main {
 
-    public Main() {
-    }
+
+ 
 
     public static void main(String[] args) throws FileNotFoundException, InterruptedException {
 
@@ -18,7 +18,7 @@ public class Main {
 
 
         List<Character>characterList = characterChoiseMenu();
-        // Menu de inicio
+// Menu de inicio
 
         Character userCharacter = characterList.get(0);
         Character rndCharacter = characterList.get(1);
@@ -76,7 +76,6 @@ public class Main {
                 break;
             case ("b"):
                 characterChoiseMenu();
-                startBattleMenu(userCharacter, rndCharacter);
                 break;
         }
     }
