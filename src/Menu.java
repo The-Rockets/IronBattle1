@@ -25,6 +25,7 @@ public class Menu {
                 break;
             case ("b"):
                 characterChoiseMenu();
+                startBattleMenu(userCharacter, rndCharacter);
                 break;
         }
     }
