@@ -18,7 +18,7 @@ public class Main {
 
 
         List<Character>characterList = characterChoiseMenu();
-// Menu de inicio
+        // Menu de inicio
 
         Character userCharacter = characterList.get(0);
         Character rndCharacter = characterList.get(1);
@@ -76,6 +76,7 @@ public class Main {
                 break;
             case ("b"):
                 characterChoiseMenu();
+                startBattleMenu(userCharacter, rndCharacter);
                 break;
         }
     }
