@@ -6,8 +6,8 @@ import java.util.concurrent.TimeUnit;
 
 public class Main {
 
-
- 
+    public Main() {
+    }
 
     public static void main(String[] args) throws FileNotFoundException, InterruptedException {
 
@@ -22,9 +22,9 @@ public class Main {
 
         Character userCharacter = characterList.get(0);
         Character rndCharacter = characterList.get(1);
-        Scanner scanner = new Scanner(System.in);
 
-        startBattleMenu(userCharacter, rndCharacter, scanner);
+
+        startBattleMenu(userCharacter, rndCharacter);
 
 
 
@@ -57,22 +57,27 @@ public class Main {
         //
     }
 
-    private static void startBattleMenu(Character userCharacter, Character rndCharacter, Scanner scanner) throws InterruptedException {
+    private static void startBattleMenu(Character userCharacter, Character rndCharacter) throws InterruptedException {
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Press 'C' --to  begin the battle"+"\n" +
                  "Press 'E' -- to exit the game."+"\n"+
                 "Press 'B' -- back to START MENU.");
         String choice = scanner.next().toLowerCase();
 
-        while (!choice.equals("c") && !choice.equals("b")) {
-            System.out.println("Invalid input. Please enter 'C' to continue or 'E' to exit the game..");
+        while (!choice.equals("c") && !choice.equals("e")&&!choice.equals("b")) {
+            System.out.println("Invalid input. Please enter 'C' to continue, 'E' to exit the game or 'B' to start menu");
             choice = scanner.next().toLowerCase();
         }
         switch (choice) {
             case ("c"):
                 battle(userCharacter, rndCharacter);
                 break;
+            case("e"):
+                break;
             case ("b"):
                 characterChoiseMenu();
+                startBattleMenu(userCharacter, rndCharacter);
+                break;
         }
     }
 
@@ -156,15 +161,15 @@ public class Main {
                 switch (choseCharacter) {
                     case ("1"):
                         int hp1 = statsFilter(100,200,"HP");
-                        int fuerza = statsFilter(1,10,"Strength");
                         int stamina = statsFilter(10,50,"Stamina");
-                        userCharacter = new Warrior(name,hp1,stamina,fuerza);
+                        int strength = statsFilter(1,10,"Strength");
+                        userCharacter = new Warrior(name,hp1,stamina,strength);
                         break;
                     case ("2"):
                         int hp2 = statsFilter(50,100,"HP");
-                        int inteligencia = statsFilter(1,10,"intelligence");
                         int mana = statsFilter(10,50,"Mana");
-                        userCharacter = new Wizard(name,hp2,mana,inteligencia);
+                        int intelligence = statsFilter(1,50,"Intelligence");
+                        userCharacter = new Wizard(name,hp2,mana,intelligence);
                         break;
                 }
                 rndCharacter = randomCharacter();
@@ -172,26 +177,50 @@ public class Main {
                 System.out.println("============================================" + "\n" +
                         userCharacter.getName() + " " + userCharacter.getClass() + "  with HP:" + userCharacter.getHp()
                         + " || stamina: "+ ((Warrior) userCharacter).getStamina()+ " || Strength: "+ ((Warrior) userCharacter).getStrength()+"\n" +
-                        "============= will fight against ================" + "\n" +
-                        "The random " + rndCharacter.getName() + " " + rndCharacter.getClass() + " with " + rndCharacter.getHp() + " hp " + "\n" +
-                        "===================================================");
-                }else {
+                        "============= will fight against ================");
+                }else if(userCharacter instanceof Wizard) {
                     System.out.println("============================================" + "\n" +
                             userCharacter.getName() + " " + userCharacter.getClass() + "  with HP:" + userCharacter.getHp()
                             + "| mana: " + ((Wizard) userCharacter).getMana() + " | intelligence: " + ((Wizard) userCharacter).getIntelligence() + "\n" +
-                            "============= will fight against ================" + "\n" +
-                            "The random " + rndCharacter.getName() + " " + rndCharacter.getClass() + " with " + rndCharacter.getHp() + " hp " + "\n" + rndCharacter+
-                            "===================================================");
+                            "============= will fight against ================");
                 }
+
+                if (rndCharacter instanceof Warrior){
+                    System.out.println(rndCharacter.getName() + " " + rndCharacter.getClass() + "  with HP:" + rndCharacter.getHp()
+                            + " || stamina: "+ ((Warrior) rndCharacter).getStamina()+ " || Strength: "+ ((Warrior) rndCharacter).getStrength()
+                            + "\n"+ "============================================");
+                }else if(rndCharacter instanceof Wizard) {
+                    System.out.println(rndCharacter.getName() + " " + rndCharacter.getClass() + "  with HP:" + rndCharacter.getHp()
+                            + "| mana: " + ((Wizard) rndCharacter).getMana() + " | intelligence: " + ((Wizard) rndCharacter).getIntelligence()
+                            + "\n"+ "============================================");
+                }
+
+
                 break;
             case ("n"):
                 userCharacter = randomCharacter();
                 rndCharacter = randomCharacter();
-                System.out.println("============================================" + "\n" +
-                        " The random " + userCharacter.getName() + " " + userCharacter.getClass() + "  with " + userCharacter.getHp() + " hp " + "\n" +
-                        "============= will fight against ================" + "\n" +
-                        "The random " + rndCharacter.getName() + " " + rndCharacter.getClass() + " with " + rndCharacter.getHp() + " hp " + "\n" +
-                        "===================================================");
+                if (userCharacter instanceof Warrior){
+                    System.out.println("============================================" + "\n" +
+                            userCharacter.getName() + " " + userCharacter.getClass() + "  with HP:" + userCharacter.getHp()
+                            + " || stamina: "+ ((Warrior) userCharacter).getStamina()+ " || Strength: "+ ((Warrior) userCharacter).getStrength()+"\n" +
+                            "============= will fight against ================");
+                }else if(userCharacter instanceof Wizard) {
+                    System.out.println("============================================" + "\n" +
+                            userCharacter.getName() + " " + userCharacter.getClass() + "  with HP:" + userCharacter.getHp()
+                            + "| mana: " + ((Wizard) userCharacter).getMana() + " | intelligence: " + ((Wizard) userCharacter).getIntelligence() + "\n" +
+                            "============= will fight against ================");
+                }
+
+                if (rndCharacter instanceof Warrior){
+                    System.out.println(rndCharacter.getName() + " " + rndCharacter.getClass() + "  with HP:" + rndCharacter.getHp()
+                            + " || stamina: "+ ((Warrior) rndCharacter).getStamina()+ " || Strength: "+ ((Warrior) rndCharacter).getStrength()
+                                    + "\n"+ "============================================");
+                }else if(rndCharacter instanceof Wizard) {
+                    System.out.println(rndCharacter.getName() + " " + rndCharacter.getClass() + "  with HP:" + rndCharacter.getHp()
+                            + "| mana: " + ((Wizard) rndCharacter).getMana() + " | intelligence: " + ((Wizard) rndCharacter).getIntelligence()
+                            + "\n"+ "============================================");
+                }
                 break;
         }
         characterList.add(userCharacter);
@@ -208,13 +237,13 @@ public class Main {
 
         while (!invalitHP) {
             try {
-                System.out.println("introduce "+statName+ "  entre "+min+" y "+max);
+                System.out.println("Enter an integer value of " +statName +" between "+min+" and "+max);
                 stat = scanner.nextInt();
                 if (stat >= min && stat <= max) {
                     invalitHP = true;
                 }
             } catch (InputMismatchException e) {
-                System.err.println("el valor debe de ser un entero");
+                System.err.println("The value of "+statName+" must be an integer between "+min+" and "+max);
                 scanner.nextLine();
             }
         }
