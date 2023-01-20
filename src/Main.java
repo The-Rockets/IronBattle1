@@ -77,6 +77,7 @@ public class Main {
             case ("b"):
                 characterChoiseMenu();
                 startBattleMenu(userCharacter, rndCharacter);
+                //fix and test
                 break;
         }
     }
